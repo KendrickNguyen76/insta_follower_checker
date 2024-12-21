@@ -48,7 +48,7 @@ def compare_following_and_followers(following : list[str], followers : list[str]
 
 # Takes in a tuple w/ two lists of usernames. Prints out each one.
 def print_difference(results : tuple[list[str]]) -> None:	
-	print(str(len(results[0])) + " people missing from followers:")
+	print("\n" + str(len(results[0])) + " people missing from followers:")
 	for name in sorted(results[0]):
 		print(name)
 
@@ -57,9 +57,22 @@ def print_difference(results : tuple[list[str]]) -> None:
 		print(name)
 
 # Main function
-def main():	
-	following = get_following(TEST_FOLLOWING)
-	followers = get_followers(TEST_FOLLOWERS)
+def main():
+	print("Instagram Follower VS Following Comparer")
+	print("(name is a work-in-progress)")
+
+	following_path = input("\nInput path to following json: ")
+	follower_path = input("Input path to follower json: ")
+	
+	# These two are just for streamlining the testing process, ignore!
+	if following_path == "":
+		following_path = TEST_FOLLOWING
+	
+	if follower_path == "":
+		follower_path = TEST_FOLLOWERS
+
+	following = get_following(Path(following_path))
+	followers = get_followers(Path(follower_path))
 
 	results = compare_following_and_followers(following, followers)
 	print_difference(results)
