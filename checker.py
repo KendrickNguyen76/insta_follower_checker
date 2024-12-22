@@ -65,14 +65,17 @@ def main():
 	follower_path = input("Input path to follower json: ")
 	
 	# These two are just for streamlining the testing process, ignore!
-	if following_path == "":
+	if following_path == "test":
 		following_path = TEST_FOLLOWING
 	
-	if follower_path == "":
+	if follower_path == "test":
 		follower_path = TEST_FOLLOWERS
 
 	following = get_following(Path(following_path))
 	followers = get_followers(Path(follower_path))
+	
+	print("\nNumber of following: " + str(len(following)))
+	print("Number of followers: " + str(len(followers)))
 
 	results = compare_following_and_followers(following, followers)
 	print_difference(results)
